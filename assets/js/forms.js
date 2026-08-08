@@ -4,8 +4,8 @@
 
    >>> INTEGRAČNÝ BOD <<<
    Jediné miesto, kde sa rieši, kam dáta idú, je funkcia sendRegistration()
-   na konci tohto súboru. Kým do nej nedoplníš endpoint, formulár dáta
-   iba vypíše do konzoly a zobrazí ďakovnú obrazovku.
+   na konci tohto súboru. Teraz posiela do Netlify Forms — pozri poznámku
+   pri nej, testuj až na nasadenej stránke, lokálne to nefunguje.
    ========================================================================== */
 
 (function () {
@@ -391,26 +391,65 @@
   /* =========================================================================
      >>> INTEGRAČNÝ BOD — TU SA ROZHODUJE, KAM DÁTA IDÚ <<<
 
-     Teraz iba vypíše dáta do konzoly a tvári sa, že sa odoslali.
-     Keď budeš mať endpoint (Google Apps Script, Make, vlastný backend,
-     Formspree…), nahraď telo funkcie napríklad týmto:
+     Registrácie chodia do Netlify Forms. Aby to fungovalo, musia byť splnené
+     dve veci naraz:
 
-         return fetch('https://sem-tvoj-endpoint', {
-           method: 'POST',
-           headers: { 'Content-Type': 'application/json' },
-           body: JSON.stringify(payload)
-         }).then(function (r) {
-           if (!r.ok) throw new Error('HTTP ' + r.status);
-           return r.json();
-         });
+       1. v HTML pred </body> je skrytý statický formulár s data-netlify="true"
+          a s rovnakým názvom, aký posiela FORM_NAMES nižšie — Netlify si polia
+          načíta pri builde, nie za behu;
+       2. POST ide ako application/x-www-form-urlencoded a v tele je form-name.
 
-     Pozn.: nahrané súbory (logo, fotka) sa cez JSON neprenesú — posiela sa
-     iba názov súboru. Ak ich chceš naozaj ukladať, treba FormData a backend,
-     ktorý ich prijme.
+     Preto sa to NEDÁ otestovať lokálne cez serve.py — Netlify Forms žijú až
+     na nasadenej stránke. Treba nahrať a odskúšať priamo tam.
+
+     Súbory (logo, tímová fotka, profilovka) sa zámerne neposielajú — sú
+     nepovinné a multipart odosielanie by to zbytočne komplikovalo. Cez formulár
+     sa nazbierajú kontakty, súbory si vypýtaš pri follow-up telefonáte.
      ====================================================================== */
+
+  var FORM_NAMES = {
+    tim: 'registracia-tim',
+    jednotlivec: 'registracia-jednotlivec'
+  };
+
+  // Polia typu file preskakujeme — v payloade je z nich aj tak len názov súboru.
+  var FILE_FIELDS = {};
+  Array.prototype.forEach.call(form.elements, function (el) {
+    if (el.type === 'file' && el.name) FILE_FIELDS[el.name] = true;
+  });
+
   function sendRegistration(payload) {
-    console.log('[TOPLIGA] registrácia pripravená na odoslanie:', payload);
-    return new Promise(function (resolve) { setTimeout(resolve, 600); });
+    var body = new URLSearchParams();
+    body.append('form-name', FORM_NAMES[FORM_ID] || FORM_ID);
+
+    Object.keys(payload).forEach(function (key) {
+      if (FILE_FIELDS[key]) return;
+
+      var v = payload[key];
+
+      if (Array.isArray(v)) {
+        v.forEach(function (item) { body.append(key, item); });
+        return;
+      }
+      if (typeof v === 'boolean') {
+        body.append(key, v ? 'áno' : 'nie');
+        return;
+      }
+      if (v && typeof v === 'object') {
+        body.append(key, JSON.stringify(v));
+        return;
+      }
+      body.append(key, v == null ? '' : String(v));
+    });
+
+    return fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+      body: body.toString()
+    }).then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r;
+    });
   }
 
   /* ------------------------------------------------------------------ štart */

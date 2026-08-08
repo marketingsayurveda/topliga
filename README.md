@@ -9,7 +9,10 @@ registracia-timu.html          dlhý formulár pre tímy (5 krokov)
 registracia-jednotlivca.html   dlhý formulár pre jednotlivcov (5 krokov)
 assets/css/style.css           celý dizajn
 assets/js/main.js              odpočet, UTM, meranie, mobilná lišta
-assets/js/forms.js             motor formulárov — TU je integračný bod
+assets/js/forms.js             motor formulárov — odosielanie do Netlify Forms
+assets/img/znak.png            značka v hlavičke a favicon
+assets/img/og.png              náhľadový obrázok 1200 × 630 (zdroj: og-source.html)
+robots.txt                     Disallow: / — stránka sa nemá indexovať
 serve.py                       lokálny náhľad: python3 serve.py → localhost:4321
 ```
 
@@ -21,17 +24,29 @@ Zoradené podľa dôležitosti. Bez prvých troch bodov kampaň nemá zmysel mer
 
 ### 1. Kam sa posielajú registrácie
 
-`assets/js/forms.js`, funkcia **`sendRegistration()`** úplne na konci súboru.
-Teraz iba vypíše dáta do konzoly a zobrazí ďakovnú obrazovku. Nahraď telo funkcie
-volaním na svoj endpoint — v komentári nad ňou je hotový príklad s `fetch`.
+**Hotové — chodia do Netlify Forms.** Držia to pohromade dva kusy:
 
-Odosiela sa JSON so všetkými poľami plus `_source` (UTM parametre, referrer),
-`_form` a `_sent_at`.
+- v `registracia-timu.html` a `registracia-jednotlivca.html` je pred `</body>`
+  skrytý statický formulár (`registracia-tim`, `registracia-jednotlivec`).
+  Netlify si polia načíta pri builde, nie za behu — bez neho POST skončí na 404;
+- `assets/js/forms.js`, funkcia **`sendRegistration()`**, posiela `POST /`
+  ako `application/x-www-form-urlencoded` s `form-name` v tele.
 
-> **Pozor na súbory.** Logo, tímová fotka a profilovka sa cez JSON neprenesú —
-> posiela sa iba názov súboru. Ak ich chceš naozaj ukladať, treba `FormData`
-> a backend, ktorý ich prijme. Preto sú v oboch formulároch nepovinné:
-> je lepšie mať registráciu bez loga než žiadnu registráciu.
+> **Testovať sa to dá až na nasadenej stránke.** Netlify Forms lokálne
+> cez `serve.py` nefungujú — treba nahrať a odoslať jednu skúšobnú registráciu.
+> Po deployi skontroluj v Netlify → Forms, že sú vidieť oba formuláre,
+> a v Forms → Notifications nastav e-mail, kam majú chodiť.
+
+**Keď pridáš alebo premenuješ pole v HTML, pridaj ho aj do skrytého formulára.**
+Čo tam nie je, to Netlify zahodí bez chyby — registrácia príde, len bez toho poľa.
+
+> **Súbory sa neposielajú.** Logo, tímová fotka a profilovka sú z odoslania
+> zámerne vynechané (`sendRegistration()` preskakuje polia typu `file`) —
+> multipart by to skomplikoval a všetky tri sú nepovinné. Vypýtaj si ich
+> pri follow-up telefonáte.
+
+Okrem polí formulára sa posiela `_source` (UTM parametre a referrer, ako JSON
+v jednom poli), `_form` a `_sent_at`.
 
 ### 2. Meranie
 
@@ -52,11 +67,19 @@ Ak uvidíš prepad medzi krokom 2 a 3, vieš presne, čo skrátiť.
 
 ### 3. Kontakt a dokumenty
 
-- Pätička vo všetkých troch súboroch má zástupný `info@topliga.sk` — nahraď reálnym.
-- Súhlas v oboch formulároch odkazuje na herné pravidlá, sadzobník pokút
-  a všeobecné podmienky. Odkazy zatiaľ nikam nevedú, treba doplniť URL od klienta.
-- `index.html` má v `<head>` `og:image` — treba obrázok 1200 × 630 px,
-  inak bude zdieľanie na Facebooku vyzerať zle.
+- Pätička vo všetkých troch súboroch má **dočasne** `adamnemcikeu@gmail.com`
+  — je to adresa, ktorú dal Adam ako provizórnu. **Čaká sa na finálny
+  notifikačný e-mail**, potom ju treba vymeniť na troch miestach
+  (`index.html`, `registracia-timu.html`, `registracia-jednotlivca.html`)
+  a rovnako aj v Netlify → Forms → Notifications.
+- Súhlas v oboch formulároch už odkazuje na
+  [herné pravidlá](https://www.topliga.sk/static-page/?slug=1-herne-pravidla-tl&leagueId=3&competitionId=624)
+  a [sadzobník pokút](https://www.topliga.sk/fine/?leagueId=3&competitionId=624).
+  Na **všeobecné podmienky** URL zatiaľ nie je, preto sú v texte bez odkazu.
+- `og:image` je hotový: `assets/img/og.png` (1200 × 630). Zdroj, z ktorého
+  sa dá pregenerovať, je `assets/img/og-source.html` — otvor v prehliadači
+  a odfoť okno 1200 × 630. Meta odkazuje na **absolútnu** URL
+  `https://go.topliga.sk/assets/img/og.png`; ak sa zmení doména, zmeň aj `og:url`.
 
 ### 4. Fotky a logo
 
@@ -183,8 +206,12 @@ riešené konzervatívne — čo nevieme, tam nie je.
 - Stránka je jeden priečinok statických súborov, netreba Node ani build.
 - Fonty (Anton, Inter) sa ťahajú z Google Fonts. Ak chceš mať istotu rýchlosti
   a čistotu voči GDPR, stiahni ich a servuj lokálne.
-- `registracia-*.html` majú `noindex` — nemajú sa objavovať vo vyhľadávaní,
-  chodí sa na ne z landing page.
+- **Celá stránka je `noindex`.** Je to PPC landing page na `go.topliga.sk`,
+  nemá súťažiť s `topliga.sk` vo vyhľadávaní. Drží to `robots.txt`
+  (`Disallow: /`) plus `noindex, nofollow` vo všetkých troch súboroch.
+  Canonical na `topliga.sk` je preto odstránený — neindexovaná stránka
+  nemá ukazovať canonical na cudziu doménu.
+- Landing page beží v koreni subdomény, `_redirects` netreba.
 - Odpočet v hlavičke sa sám prepne: do 17. 8. odpočítava koniec nižšieho štartovného,
   potom uzávierku 31. 8. Po 31. 8. sa blok skryje sám. Termíny sú v `assets/js/main.js`
   na začiatku súboru v poli `DEADLINES`.

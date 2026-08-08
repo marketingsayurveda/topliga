@@ -5,11 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Registrácia jednotlivca — Niké TOP Liga, jeseň 2026</title>
 <meta name="description" content="Nemáš tím? Prihlás sa sám do Niké TOP Ligy v Bratislave. Pridáme ťa do tímu alebo z jednotlivcov poskladáme nový.">
-<meta name="robots" content="noindex,follow">
+<meta name="robots" content="noindex, nofollow">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;800&display=swap&subset=latin,latin-ext" rel="stylesheet">
+<link rel="icon" href="assets/img/znak.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/znak.png">
 <link rel="stylesheet" href="assets/css/style.css">
 
 <!-- Google Tag Manager -->
@@ -468,9 +470,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <input type="checkbox" name="suhlas" value="ano" required
                      data-msg="Bez súhlasu s pravidlami ťa do súťaže nevieme zaradiť.">
               <span>
-                Záväzne súhlasím s rešpektovaním herných pravidiel a sadzobníka pokút Niké TOP Ligy
+                Záväzne súhlasím s rešpektovaním
+                <a href="https://www.topliga.sk/static-page/?slug=1-herne-pravidla-tl&amp;leagueId=3&amp;competitionId=624" target="_blank" rel="noopener">herných pravidiel</a>
+                a <a href="https://www.topliga.sk/fine/?leagueId=3&amp;competitionId=624" target="_blank" rel="noopener">sadzobníka pokút</a> Niké TOP Ligy
                 a so všeobecnými podmienkami registrácie hráča.
-                <small>Odkazy na dokumenty doplní klient.</small>
               </span>
             </label>
             <label class="opt">
@@ -520,11 +523,59 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <footer class="foot">
   <div class="wrap foot__in">
     <span>Niké TOP Liga v malom futbale · Bratislava · Jeseň 2026</span>
-    <span><a href="mailto:info@topliga.sk">info@topliga.sk</a></span>
+    <span><a href="mailto:adamnemcikeu@gmail.com">adamnemcikeu@gmail.com</a></span>
   </div>
 </footer>
 
 <script src="assets/js/main.js"></script>
 <script src="assets/js/forms.js"></script>
+
+<!-- =====================================================================
+     Skrytý statický formulár pre Netlify Forms.
+     Netlify hľadá formuláre v HTML pri builde — bez tohto by AJAX POST
+     z forms.js skončil na 404. Musí obsahovať každé pole, ktoré posielame.
+     Súbory (logo, fotka) sa neposielajú, preto tu nie sú.
+     ================================================================== -->
+<form name="registracia-jednotlivec" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="registracia-jednotlivec">
+  <input type="text" name="bot-field">
+  <input type="text" name="meno">
+  <input type="text" name="priezvisko">
+  <input type="text" name="datum_narodenia">
+  <input type="text" name="pohlavie">
+  <input type="text" name="obcianstvo">
+  <input type="text" name="rodne_cislo">
+  <input type="text" name="vyska">
+  <input type="text" name="vaha">
+  <input type="text" name="sutaz">
+  <input type="text" name="pozicia">
+  <input type="text" name="zrucnosti">
+  <input type="text" name="manazer_ochota">
+  <input type="text" name="email">
+  <input type="text" name="telefon">
+  <input type="text" name="ulica">
+  <input type="text" name="mesto">
+  <input type="text" name="psc">
+  <input type="text" name="okres">
+  <input type="text" name="krajina">
+  <input type="text" name="den_pondelok">
+  <input type="text" name="den_utorok">
+  <input type="text" name="den_streda">
+  <input type="text" name="den_stvrtok">
+  <input type="text" name="den_piatok">
+  <input type="text" name="cas_18">
+  <input type="text" name="cas_19">
+  <input type="text" name="cas_20">
+  <input type="text" name="cas_21">
+  <input type="text" name="zdroj">
+  <input type="text" name="fb">
+  <input type="text" name="ig">
+  <input type="text" name="poznamka">
+  <input type="text" name="suhlas">
+  <input type="text" name="suhlas_marketing">
+  <input type="text" name="_form">
+  <input type="text" name="_sent_at">
+  <textarea name="_source"></textarea>
+</form>
 </body>
 </html>
