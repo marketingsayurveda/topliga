@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Registrácia jednotlivca — Niké TOP Liga, jeseň 2026</title>
+<meta name="description" content="Nemáš tím? Prihlás sa sám do Niké TOP Ligy v Bratislave. Pridáme ťa do tímu alebo z jednotlivcov poskladáme nový.">
+<meta name="robots" content="noindex,follow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;800&display=swap&subset=latin,latin-ext" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PT4WH8WK');</script>
+<!-- End Google Tag Manager -->
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PT4WH8WK"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="head">
+  <div class="wrap head__in">
+    <a class="logo" href="index.html">
+      <img class="logo__mark" src="assets/img/znak.png" alt="" width="34" height="39">
+      <span class="logo__txt">TOP <i>Liga</i><small>v malom futbale</small></span>
+    </a>
+    <span class="head__deadline">Uzávierka <b>31. 8.</b></span>
+  </div>
+</header>
+
+<main class="formpage">
+<div class="wrap" style="max-width:860px">
+
+  <a class="back" href="index.html">← Späť na informácie o lige</a>
+
+  <div data-form-wrap>
+
+    <div class="formpage__head" data-form-top>
+      <h1>Registrácia <span class="hl">jednotlivca</span></h1>
+      <p>
+        Nemáš partiu, alebo vám chýbajú ľudia do tímu? Vyplň tento formulár. Buď ťa pridáme do existujúceho tímu,
+        ktorému chýbajú hráči, alebo z prihlásených jednotlivcov poskladáme nový tím tak, aby vydržal celú sezónu.
+      </p>
+    </div>
+
+    <div class="notice" data-draft-note hidden>
+      <b>Načítali sme tvoj rozpísaný formulár.</b>
+      Skontroluj údaje, prípadne <a href="#" data-draft-clear>začni odznova</a>.
+    </div>
+
+    <div class="progress">
+      <div class="progress__bar"><div class="progress__fill" data-progress-fill></div></div>
+      <div class="progress__meta">
+        <span data-progress-count>Krok <b>1</b> z 5</span>
+        <span data-progress-name></span>
+      </div>
+    </div>
+
+    <form data-mform="jednotlivec" novalidate>
+
+      <!-- ================================================= KROK 1: O TEBE -->
+      <section class="fstep" data-step data-step-name="O tebe">
+        <h2>Kto si</h2>
+        <p class="fstep__hint">
+          Základné údaje potrebujeme na súpisku a na zaradenie do správnej kategórie.
+        </p>
+
+        <fieldset>
+          <legend>Meno a dátum narodenia</legend>
+          <div class="grid grid--2">
+            <div class="f">
+              <label for="meno">Meno <span class="req">*</span></label>
+              <input type="text" id="meno" name="meno" required autocomplete="given-name" data-sum="Meno">
+              <span class="f__err"></span>
+            </div>
+            <div class="f">
+              <label for="priezvisko">Priezvisko <span class="req">*</span></label>
+              <input type="text" id="priezvisko" name="priezvisko" required autocomplete="family-name" data-sum="Priezvisko">
+              <span class="f__err"></span>
+            </div>
+
+            <div class="f">
+              <label for="narodenie">Dátum narodenia <span class="req">*</span></label>
+              <input type="date" id="narodenie" name="datum_narodenia" required data-sum="Dátum narodenia">
+              <span class="f__help">Rozhoduje o zaradení do kategórie +35 (ročník 1991 a skôr).</span>
+              <span class="f__err"></span>
+            </div>
+            <div class="f">
+              <label for="pohlavie">Pohlavie <span class="req">*</span></label>
+              <select id="pohlavie" name="pohlavie" required>
+                <option value="">Vyberte</option>
+                <option value="muz">Muž</option>
+                <option value="zena">Žena</option>
+              </select>
+              <span class="f__err"></span>
+            </div>
+
+            <div class="f">
+              <label for="obcianstvo">Štátna príslušnosť <span class="req">*</span></label>
+              <select id="obcianstvo" name="obcianstvo" required>
+                <option value="">Vyberte</option>
+                <option value="SK" selected>Slovenská</option>
+                <option value="CZ">Česká</option>
+                <option value="UA">Ukrajinská</option>
+                <option value="HU">Maďarská</option>
+                <option value="AT">Rakúska</option>
+                <option value="ine">Iná</option>
+              </select>
+              <span class="f__err"></span>
+            </div>
+            <div class="f">
+              <label for="rodne_cislo">Rodné číslo</label>
+              <input type="text" id="rodne_cislo" name="rodne_cislo" placeholder="nepovinné" autocomplete="off">
+              <span class="f__help">Nepovinné pri prihlásení. Vypýtame si ho až pri zápise do súťažného systému.</span>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Doplňujúce</legend>
+          <div class="grid grid--3">
+            <div class="f">
+              <label for="vyska">Výška (cm)</label>
+              <input type="number" id="vyska" name="vyska" min="120" max="230" placeholder="182">
+            </div>
+            <div class="f">
+              <label for="vaha">Váha (kg)</label>
+              <input type="number" id="vaha" name="vaha" min="35" max="200" placeholder="80">
+            </div>
+            <div class="f">
+              <label for="profilfoto">Profilová fotka</label>
+              <input type="file" id="profilfoto" name="profilova_fotka" accept="image/*">
+              <span class="f__help">Štvorec, max. 2 MB.</span>
+            </div>
+          </div>
+        </fieldset>
+      </section>
+
+      <!-- ================================================= KROK 2: FUTBAL -->
+      <section class="fstep" data-step data-step-name="Futbal">
+        <h2>Ako hráš</h2>
+        <p class="fstep__hint">
+          Podľa toho ťa zaradíme do tímu, kde budeš sedieť výkonnostne aj postom.
+          Nikto nepotrebuje šiestich brankárov.
+        </p>
+
+        <fieldset>
+          <legend>Zaradenie</legend>
+          <div class="grid grid--2">
+            <div class="f span-2">
+              <label for="sutaz">Kategória <span class="req">*</span></label>
+              <select id="sutaz" name="sutaz" required data-sum="Kategória">
+                <option value="">Vyberte</option>
+                <option value="top-liga">TOP Liga (1. až 4. liga podľa výkonnosti)</option>
+                <option value="top-liga-35">TOP Liga +35 (ročník 1991 a skôr)</option>
+                <option value="jedno">Je mi to jedno, hlavne nech hrám</option>
+              </select>
+              <span class="f__err"></span>
+            </div>
+
+            <div class="f">
+              <label for="pozicia">Pozícia v tíme <span class="req">*</span></label>
+              <select id="pozicia" name="pozicia" required data-sum="Pozícia">
+                <option value="">Vyberte</option>
+                <option value="brankar">Brankár</option>
+                <option value="obranca">Obranca</option>
+                <option value="stredopoliar">Stredopoliar</option>
+                <option value="utocnik">Útočník</option>
+                <option value="univerzal">Univerzál — zahrám kdekoľvek</option>
+              </select>
+              <span class="f__err"></span>
+            </div>
+
+            <div class="f">
+              <label for="zrucnosti">Futbalové zručnosti <span class="req">*</span></label>
+              <select id="zrucnosti" name="zrucnosti" required data-sum="Úroveň">
+                <option value="">Vyberte</option>
+                <option value="1">1 — kvalita je otázna a prvoradá je zábava</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 — bežný amatérsky priemer</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10 — hrávam pravidelne a som pripravený bojovať s elitou</option>
+              </select>
+              <span class="f__help">Buď úprimný. Prestrelené číslo si odnesieš ty sám na ihrisku.</span>
+              <span class="f__err"></span>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Manažér nového tímu</legend>
+          <div class="f">
+            <span class="f__label">Bol by si ochotný stať sa manažérom tímu? <span class="req">*</span></span>
+            <span class="f__help" style="margin-bottom:4px">
+              Ak z jednotlivcov skladáme nový tím, potrebujeme jedného človeka, ktorý drží partiu pokope
+              a rieši s nami termíny. Nie je to funkcia na plný úväzok.
+            </span>
+            <div class="opts">
+              <label class="opt">
+                <input type="radio" name="manazer_ochota" value="ano" required>
+                <span>Áno, beriem to na seba</span>
+              </label>
+              <label class="opt">
+                <input type="radio" name="manazer_ochota" value="mozno">
+                <span>Možno<small>Ak sa nikto iný nenájde, spravím to.</small></span>
+              </label>
+              <label class="opt">
+                <input type="radio" name="manazer_ochota" value="nie">
+                <span>Nie, chcem len hrať</span>
+              </label>
+            </div>
+            <span class="f__err"></span>
+          </div>
+        </fieldset>
+      </section>
+
+      <!-- ================================================= KROK 3: KONTAKT -->
+      <section class="fstep" data-step data-step-name="Kontakt">
+        <h2>Kde ťa nájdeme</h2>
+        <p class="fstep__hint">
+          Ozveme sa ti hneď, ako budeme mať pre teba tím. Telefón je rýchlejší než e-mail.
+        </p>
+
+        <fieldset>
+          <legend>Kontakt</legend>
+          <div class="grid grid--2">
+            <div class="f">
+              <label for="email">E-mail <span class="req">*</span></label>
+              <input type="email" id="email" name="email" required autocomplete="email"
+                     placeholder="meno@email.sk" data-sum="E-mail">
+              <span class="f__err"></span>
+            </div>
+            <div class="f">
+              <label for="telefon">Telefón <span class="req">*</span></label>
+              <input type="tel" id="telefon" name="telefon" required autocomplete="tel"
+                     placeholder="+421 900 123 456" data-sum="Telefón">
+              <span class="f__err"></span>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Adresa</legend>
+          <div class="grid grid--2">
+            <div class="f span-2">
+              <label for="ulica">Ulica a číslo <span class="req">*</span></label>
+              <input type="text" id="ulica" name="ulica" required autocomplete="street-address">
+              <span class="f__err"></span>
+            </div>
+            <div class="f">
+              <label for="mesto">Mesto <span class="req">*</span></label>
+              <input type="text" id="mesto" name="mesto" required autocomplete="address-level2"
+                     placeholder="Bratislava" data-sum="Mesto">
+              <span class="f__err"></span>
+            </div>
+            <div class="f">
+              <label for="psc">PSČ</label>
+              <input type="text" id="psc" name="psc" autocomplete="postal-code" placeholder="831 04">
+            </div>
+            <div class="f">
+              <label for="okres">Okres</label>
+              <input type="text" id="okres" name="okres" placeholder="Bratislava III">
+            </div>
+            <div class="f">
+              <label for="krajina">Krajina <span class="req">*</span></label>
+              <select id="krajina" name="krajina" required>
+                <option value="">Vyberte</option>
+                <option value="SK" selected>Slovensko</option>
+                <option value="CZ">Česko</option>
+                <option value="AT">Rakúsko</option>
+                <option value="HU">Maďarsko</option>
+                <option value="ine">Iná krajina</option>
+              </select>
+              <span class="f__err"></span>
+            </div>
+          </div>
+        </fieldset>
+      </section>
+
+      <!-- ================================================= KROK 4: TERMÍNY -->
+      <section class="fstep" data-step data-step-name="Termíny">
+        <h2>Kedy môžeš hrať</h2>
+        <p class="fstep__hint">
+          Podľa toho ťa priradíme k tímu, ktorý hrá v čase, keď ty naozaj môžeš.
+          Oznámkuj každý riadok od 1 do 5.
+        </p>
+
+        <div class="notice">
+          <b>Označ aspoň dva vyhovujúce dni a dva vyhovujúce časy</b> so známkou 3 alebo lepšou.
+          Pri jedinej možnosti sa hľadá tím veľmi ťažko.
+        </div>
+
+        <fieldset>
+          <legend>Preferovaný hrací deň</legend>
+          <div class="f" data-rate-group data-min-good="2">
+            <div class="scale-key"><span>1 — najviac mi vyhovuje</span><span>5 — vôbec nemôžem</span></div>
+
+            <div class="rate">
+              <span class="rate__name">Pondelok</span>
+              <span class="rate__scale">
+                <input type="radio" id="jpo1" name="den_pondelok" value="1"><label for="jpo1">1</label>
+                <input type="radio" id="jpo2" name="den_pondelok" value="2"><label for="jpo2">2</label>
+                <input type="radio" id="jpo3" name="den_pondelok" value="3"><label for="jpo3">3</label>
+                <input type="radio" id="jpo4" name="den_pondelok" value="4"><label for="jpo4">4</label>
+                <input type="radio" id="jpo5" name="den_pondelok" value="5"><label for="jpo5">5</label>
+              </span>
+            </div>
+
+            <div class="rate">
+              <span class="rate__name">Utorok</span>
+              <span class="rate__scale">
+                <input type="radio" id="jut1" name="den_utorok" value="1"><label for="jut1">1</label>
+                <input type="radio" id="jut2" name="den_utorok" value="2"><label for="jut2">2</label>
+                <input type="radio" id="jut3" name="den_utorok" value="3"><label for="jut3">3</label>
+                <input type="radio" id="jut4" name="den_utorok" value="4"><label for="jut4">4</label>
+                <input type="radio" id="jut5" name="den_utorok" value="5"><label for="jut5">5</label>
+              </span>
+            </div>
+
+            <div class="rate">
+              <span class="rate__name">Streda</span>
+              <span class="rate__scale">
+                <input type="radio" id="jst1" name="den_streda" value="1"><label for="jst1">1</label>
+                <input type="radio" id="jst2" name="den_streda" value="2"><label for="jst2">2</label>
+                <input type="radio" id="jst3" name="den_streda" value="3"><label for="jst3">3</label>
+                <input type="radio" id="jst4" name="den_streda" value="4"><label for="jst4">4</label>
+                <input type="radio" id="jst5" name="den_streda" value="5"><label for="jst5">5</label>
+              </span>
+            </div>
+
+            <div class="rate">
+              <span class="rate__name">Štvrtok</span>
+              <span class="rate__scale">
+                <input type="radio" id="jsv1" name="den_stvrtok" value="1"><label for="jsv1">1</label>
+                <input type="radio" id="jsv2" name="den_stvrtok" value="2"><label for="jsv2">2</label>
+                <input type="radio" id="jsv3" name="den_stvrtok" value="3"><label for="jsv3">3</label>
+                <input type="radio" id="jsv4" name="den_stvrtok" value="4"><label for="jsv4">4</label>
+                <input type="radio" id="jsv5" name="den_stvrtok" value="5"><label for="jsv5">5</label>
+              </span>
+            </div>
+
+            <div class="rate">
+              <span class="rate__name">Piatok</span>
+              <span class="rate__scale">
+                <input type="radio" id="jpi1" name="den_piatok" value="1"><label for="jpi1">1</label>
+                <input type="radio" id="jpi2" name="den_piatok" value="2"><label for="jpi2">2</label>
+                <input type="radio" id="jpi3" name="den_piatok" value="3"><label for="jpi3">3</label>
+                <input type="radio" id="jpi4" name="den_piatok" value="4"><label for="jpi4">4</label>
+                <input type="radio" id="jpi5" name="den_piatok" value="5"><label for="jpi5">5</label>
+              </span>
+            </div>
+
+            <span class="f__err"></span>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Preferovaný hrací čas</legend>
+          <div class="f" data-rate-group data-min-good="2">
+            <div class="scale-key"><span>1 — najviac mi vyhovuje</span><span>5 — vôbec nemôžem</span></div>
+
+            <div class="rate">
+              <span class="rate__name">18:00 – 19:00</span>
+              <span class="rate__scale">
+                <input type="radio" id="j18a" name="cas_18" value="1"><label for="j18a">1</label>
+                <input type="radio" id="j18b" name="cas_18" value="2"><label for="j18b">2</label>
+                <input type="radio" id="j18c" name="cas_18" value="3"><label for="j18c">3</label>
+                <input type="radio" id="j18d" name="cas_18" value="4"><label for="j18d">4</label>
+                <input type="radio" id="j18e" name="cas_18" value="5"><label for="j18e">5</label>
+              </span>
+            </div>
+
+            <div class="rate">
+              <span class="rate__name">19:00 – 20:00</span>
+              <span class="rate__scale">
+                <input type="radio" id="j19a" name="cas_19" value="1"><label for="j19a">1</label>
+                <input type="radio" id="j19b" name="cas_19" value="2"><label for="j19b">2</label>
+                <input type="radio" id="j19c" name="cas_19" value="3"><label for="j19c">3</label>
+                <input type="radio" id="j19d" name="cas_19" value="4"><label for="j19d">4</label>
+                <input type="radio" id="j19e" name="cas_19" value="5"><label for="j19e">5</label>
+              </span>
+            </div>
+
+            <div class="rate">
+              <span class="rate__name">20:00 – 21:00</span>
+              <span class="rate__scale">
+                <input type="radio" id="j20a" name="cas_20" value="1"><label for="j20a">1</label>
+                <input type="radio" id="j20b" name="cas_20" value="2"><label for="j20b">2</label>
+                <input type="radio" id="j20c" name="cas_20" value="3"><label for="j20c">3</label>
+                <input type="radio" id="j20d" name="cas_20" value="4"><label for="j20d">4</label>
+                <input type="radio" id="j20e" name="cas_20" value="5"><label for="j20e">5</label>
+              </span>
+            </div>
+
+            <div class="rate">
+              <span class="rate__name">21:00 – 22:00</span>
+              <span class="rate__scale">
+                <input type="radio" id="j21a" name="cas_21" value="1"><label for="j21a">1</label>
+                <input type="radio" id="j21b" name="cas_21" value="2"><label for="j21b">2</label>
+                <input type="radio" id="j21c" name="cas_21" value="3"><label for="j21c">3</label>
+                <input type="radio" id="j21d" name="cas_21" value="4"><label for="j21d">4</label>
+                <input type="radio" id="j21e" name="cas_21" value="5"><label for="j21e">5</label>
+              </span>
+            </div>
+
+            <span class="f__err"></span>
+          </div>
+        </fieldset>
+      </section>
+
+      <!-- ================================================= KROK 5: ODOSLANIE -->
+      <section class="fstep" data-step data-step-name="Odoslanie">
+        <h2>Skontroluj a odošli</h2>
+        <p class="fstep__hint">
+          Posledný krok. Potom už len čakáš, kým sa ozveme s konkrétnym tímom.
+        </p>
+
+        <dl class="summary" data-summary></dl>
+
+        <fieldset>
+          <legend>Odkiaľ si sa o nás dozvedel <span class="req">*</span></legend>
+          <div class="opts" data-req-group>
+            <label class="opt"><input type="checkbox" name="zdroj" value="socialne-siete" data-multi><span>Sociálne siete</span></label>
+            <label class="opt"><input type="checkbox" name="zdroj" value="hraval-som" data-multi><span>Hrával som v inom tíme</span></label>
+            <label class="opt"><input type="checkbox" name="zdroj" value="offline" data-multi><span>Leták, plagát alebo iná offline reklama</span></label>
+            <label class="opt"><input type="checkbox" name="zdroj" value="odporucanie" data-multi><span>Odporučil mi to známy</span></label>
+            <label class="opt"><input type="checkbox" name="zdroj" value="ine" data-multi><span>Inak</span></label>
+          </div>
+          <span class="f__err"></span>
+        </fieldset>
+
+        <fieldset>
+          <legend>Sociálne siete a poznámka</legend>
+          <div class="grid grid--2">
+            <div class="f">
+              <label for="s_fb">Facebook</label>
+              <input type="url" id="s_fb" name="fb" placeholder="https://facebook.com/…">
+            </div>
+            <div class="f">
+              <label for="s_ig">Instagram</label>
+              <input type="url" id="s_ig" name="ig" placeholder="https://instagram.com/…">
+            </div>
+            <div class="f span-2">
+              <label for="poznamka">Poznámka</label>
+              <textarea id="poznamka" name="poznamka" placeholder="Napríklad: chceme sa prihlásiť traja naraz, dajte nás do jedného tímu."></textarea>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Súhlas</legend>
+          <div class="opts">
+            <label class="opt">
+              <input type="checkbox" name="suhlas" value="ano" required
+                     data-msg="Bez súhlasu s pravidlami ťa do súťaže nevieme zaradiť.">
+              <span>
+                Záväzne súhlasím s rešpektovaním herných pravidiel a sadzobníka pokút Niké TOP Ligy
+                a so všeobecnými podmienkami registrácie hráča.
+                <small>Odkazy na dokumenty doplní klient.</small>
+              </span>
+            </label>
+            <label class="opt">
+              <input type="checkbox" name="suhlas_marketing" value="ano">
+              <span>
+                Chcem dostávať informácie o ďalších sezónach a turnajoch.
+                <small>Nepovinné. Odhlásiť sa dá jedným klikom.</small>
+              </span>
+            </label>
+          </div>
+          <span class="f__err"></span>
+        </fieldset>
+
+        <div class="notice is-bad" data-send-error hidden>
+          Odoslanie sa nepodarilo. Skús to prosím ešte raz — údaje sme ti nechali vyplnené.
+        </div>
+      </section>
+
+      <div class="fnav">
+        <button type="button" class="btn btn--ghost" data-prev hidden>Späť</button>
+        <button type="button" class="btn btn--primary" data-next>Pokračovať</button>
+        <button type="submit" class="btn btn--primary" data-send hidden>Odoslať registráciu</button>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="done" data-done>
+    <div class="done__mark">✓</div>
+    <h1>Si <span class="hl">prihlásený</span></h1>
+    <p>
+      Registráciu máme. Teraz hľadáme tím, ktorý hrá v čase, keď môžeš ty,
+      a ktorému sedí tvoja pozícia aj úroveň.
+    </p>
+    <p>
+      Ozveme sa ti telefonicky alebo e-mailom hneď, ako budeme mať konkrétnu partiu.
+      Ak sa nič neozve do niekoľkých dní, napíš nám.
+    </p>
+    <div class="hero__actions">
+      <a class="btn btn--primary" href="index.html">Späť na informácie o lige</a>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <span>Niké TOP Liga v malom futbale · Bratislava · Jeseň 2026</span>
+    <span><a href="mailto:info@topliga.sk">info@topliga.sk</a></span>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/forms.js"></script>
+</body>
+</html>
