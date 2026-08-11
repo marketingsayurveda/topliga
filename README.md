@@ -67,10 +67,9 @@ Ak uvidíš prepad medzi krokom 2 a 3, vieš presne, čo skrátiť.
 
 ### 3. Kontakt a dokumenty
 
-- Pätička vo všetkých troch súboroch má **dočasne** `adamnemcikeu@gmail.com`
-  — je to adresa, ktorú dal Adam ako provizórnu. **Čaká sa na finálny
-  notifikačný e-mail**, potom ju treba vymeniť na troch miestach
-  (`index.html`, `registracia-timu.html`, `registracia-jednotlivca.html`)
+- Pätička vo všetkých troch súboroch má **finálny** notifikačný e-mail
+  `juraj.supak@malyfutbal.sk`. Ak sa niekedy zmení, treba ho vymeniť na troch
+  miestach (`index.html`, `registracia-timu.html`, `registracia-jednotlivca.html`)
   a rovnako aj v Netlify → Forms → Notifications.
 - Súhlas v oboch formulároch už odkazuje na
   [herné pravidlá](https://www.topliga.sk/static-page/?slug=1-herne-pravidla-tl&leagueId=3&competitionId=624)
