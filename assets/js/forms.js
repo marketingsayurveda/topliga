@@ -54,7 +54,7 @@
 
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
 
-  function validateStep(step) {
+  function validateStep(step, validateHidden) {
     clearBad(step);
     var firstBad = null;
 
@@ -65,7 +65,7 @@
 
     /* --- bežné povinné polia --- */
     Array.prototype.forEach.call(step.querySelectorAll('[required]'), function (el) {
-      if (!isVisible(el) && el.type !== 'radio' && el.type !== 'checkbox') return;
+      if (!validateHidden && !isVisible(el) && el.type !== 'radio' && el.type !== 'checkbox') return;
 
       if (el.type === 'checkbox') {
         if (!el.checked) fail(el, el.getAttribute('data-msg') || 'Bez tohto súhlasu registráciu nevieme prijať.');
@@ -142,6 +142,22 @@
       return false;
     }
 
+    return true;
+  }
+
+  function validateAllSteps() {
+    for (var i = 0; i < steps.length; i++) {
+      if (validateStep(steps[i], true)) continue;
+
+      showStep(i, { silent: true });
+      var firstBad = steps[i].querySelector('.is-bad input, .is-bad select, .is-bad textarea');
+      setTimeout(function () {
+        var target = firstBad || steps[i];
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        if (firstBad && typeof firstBad.focus === 'function') firstBad.focus({ preventScroll: true });
+      }, 0);
+      return false;
+    }
     return true;
   }
 
@@ -345,7 +361,7 @@
   form.addEventListener('submit', function (e) {
     e.preventDefault();
 
-    if (!validateStep(steps[current])) return;
+    if (!validateAllSteps()) return;
 
     var payload = collect();
 
