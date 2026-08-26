@@ -49,8 +49,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="formpage__head" data-form-top>
       <h1>Registrácia <span class="hl">tímu</span></h1>
       <p>
-        Jeseň 2026, Bratislava. Formulár má päť krokov a zaberie zhruba päť minút.
-        Rozpísané údaje sa priebežne ukladajú v prehliadači, takže sa k nemu môžeš vrátiť.
+        Jeseň 2026, Bratislava. Vyplňte základné údaje o tíme a kontakt na manažéra tímu.
       </p>
     </div>
 
@@ -62,7 +61,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="progress">
       <div class="progress__bar"><div class="progress__fill" data-progress-fill></div></div>
       <div class="progress__meta">
-        <span data-progress-count>Krok <b>1</b> z 5</span>
+        <span data-progress-count>Krok <b>1</b> z 3</span>
         <span data-progress-name></span>
       </div>
     </div>
@@ -70,10 +69,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <form data-mform="tim" novalidate>
 
       <!-- ================================================= KROK 1: TÍM -->
-      <section class="fstep" data-step data-step-name="Tím">
-        <h2>Základné údaje o tíme</h2>
+      <section class="fstep lead-capture" data-step data-step-name="Tím">
+        <h2>Názov vášho tímu</h2>
         <p class="fstep__hint">
-          Názov si dobre rozmysli — bude sa objavovať v tabuľkách, vo výsledkoch aj v štatistikách.
+          Ak tím ešte nemá názov, uveďte napríklad názov firmy alebo skupiny.
         </p>
 
         <fieldset>
@@ -95,7 +94,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <div class="f span-2">
               <label for="kategoria">Kategória <span class="req">*</span></label>
-              <select id="kategoria" name="kategoria" required data-sum="Kategória">
+              <select id="kategoria" name="kategoria" data-sum="Kategória">
                 <option value="">Vyberte</option>
                 <option value="top-liga">TOP Liga (1. až 4. liga podľa výkonnosti)</option>
                 <option value="top-liga-35">TOP Liga +35 (hráči narodení v roku 1991 a skôr)</option>
@@ -118,7 +117,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <div class="f">
               <label for="nazov_kratky">Krátky názov <span class="req">*</span></label>
-              <input type="text" id="nazov_kratky" name="nazov_kratky" required maxlength="13"
+              <input type="text" id="nazov_kratky" name="nazov_kratky" maxlength="13"
                      placeholder="max. 13 znakov" data-sum="Krátky názov">
               <span class="f__help">Používa sa v tabuľkách, kde sa dlhý názov nezmestí.</span>
               <span class="f__err"></span>
@@ -126,7 +125,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <div class="f">
               <label for="skratka">Skratka <span class="req">*</span></label>
-              <input type="text" id="skratka" name="skratka" required maxlength="3" minlength="2"
+              <input type="text" id="skratka" name="skratka" maxlength="3" minlength="2"
                      placeholder="max. 3 znaky" style="text-transform:uppercase" data-sum="Skratka">
               <span class="f__help">Napríklad DRK. Objaví sa pri výsledkoch.</span>
               <span class="f__err"></span>
@@ -134,7 +133,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <div class="f">
               <label for="kvalita">Kvalita tímu <span class="req">*</span></label>
-              <select id="kvalita" name="kvalita" required data-sum="Kvalita tímu">
+              <select id="kvalita" name="kvalita" data-sum="Kvalita tímu">
                 <option value="">Vyberte</option>
                 <option value="1">1 — kvalita je otázna a prvoradá je zábava</option>
                 <option value="2">2</option>
@@ -173,24 +172,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </section>
 
       <!-- ============================================ KROK 2: KONTAKTY -->
-      <section class="fstep" data-step data-step-name="Kontakty">
-        <h2>Manažér a kapitán</h2>
+      <section class="fstep lead-capture" data-step data-step-name="Kontakt">
+        <h2>Kontakt na manažéra tímu</h2>
         <p class="fstep__hint">
-          Manažér je človek, s ktorým budeme riešiť termíny, platbu a súpisku.
-          Kapitán je ten, koho v deň zápasu zastihneme na ihrisku. Môže to byť tá istá osoba.
+          Na tento e-mail pošleme ďalšie informácie k registrácii.
         </p>
 
         <fieldset>
           <legend>Manažér tímu</legend>
           <div class="grid grid--2">
             <div class="f">
-              <label for="m_meno">Meno <span class="req">*</span></label>
-              <input type="text" id="m_meno" name="manazer_meno" required autocomplete="given-name" data-sum="Manažér — meno">
+              <label for="m_meno">Tvoje meno <span class="req">*</span></label>
+              <input type="text" id="m_meno" name="manazer_meno" required autocomplete="name" placeholder="Meno a priezvisko" data-sum="Kontakt">
               <span class="f__err"></span>
             </div>
             <div class="f">
               <label for="m_priezvisko">Priezvisko <span class="req">*</span></label>
-              <input type="text" id="m_priezvisko" name="manazer_priezvisko" required autocomplete="family-name" data-sum="Manažér — priezvisko">
+              <input type="text" id="m_priezvisko" name="manazer_priezvisko" autocomplete="family-name" data-sum="Manažér — priezvisko">
               <span class="f__err"></span>
             </div>
             <div class="f">
@@ -209,22 +207,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <div class="f span-2">
               <label for="m_ulica">Ulica a číslo <span class="req">*</span></label>
-              <input type="text" id="m_ulica" name="manazer_ulica" required autocomplete="street-address">
+              <input type="text" id="m_ulica" name="manazer_ulica" autocomplete="street-address">
               <span class="f__err"></span>
             </div>
             <div class="f">
               <label for="m_mesto">Mesto <span class="req">*</span></label>
-              <input type="text" id="m_mesto" name="manazer_mesto" required autocomplete="address-level2" data-sum="Mesto">
+              <input type="text" id="m_mesto" name="manazer_mesto" autocomplete="address-level2" data-sum="Mesto">
               <span class="f__err"></span>
             </div>
             <div class="f">
               <label for="m_psc">PSČ <span class="req">*</span></label>
-              <input type="text" id="m_psc" name="manazer_psc" required autocomplete="postal-code" placeholder="831 04">
+              <input type="text" id="m_psc" name="manazer_psc" autocomplete="postal-code" placeholder="831 04">
               <span class="f__err"></span>
             </div>
             <div class="f span-2">
               <label for="m_krajina">Krajina <span class="req">*</span></label>
-              <select id="m_krajina" name="manazer_krajina" required>
+              <select id="m_krajina" name="manazer_krajina">
                 <option value="">Vyberte</option>
                 <option value="SK" selected>Slovensko</option>
                 <option value="CZ">Česko</option>
@@ -243,12 +241,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="grid grid--2">
             <div class="f">
               <label for="k_email">E-mail <span class="req">*</span></label>
-              <input type="email" id="k_email" name="kapitan_email" required placeholder="meno@email.sk">
+              <input type="email" id="k_email" name="kapitan_email" placeholder="meno@email.sk">
               <span class="f__err"></span>
             </div>
             <div class="f">
               <label for="k_tel">Telefón <span class="req">*</span></label>
-              <input type="tel" id="k_tel" name="kapitan_telefon" required placeholder="+421 900 123 456">
+              <input type="tel" id="k_tel" name="kapitan_telefon" placeholder="+421 900 123 456">
               <span class="f__help">Na toto číslo voláme, ak v deň zápasu treba niečo doriešiť.</span>
               <span class="f__err"></span>
             </div>
@@ -257,11 +255,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </section>
 
       <!-- ======================================= KROK 3: DEŇ A ČAS -->
-      <section class="fstep" data-step data-step-name="Termíny">
+      <section class="fstep" data-details-step data-step-name="Termíny">
         <h2>Kedy vám to sedí</h2>
         <p class="fstep__hint">
-          Toto je najdôležitejšia časť celej registrácie — podľa nej sa robí rozpis zápasov.
-          Oznámkuj každý riadok od 1 do 5, ako v škole.
+          Podľa týchto odpovedí sa skladá rozpis zápasov. Každý riadok oznámkujte od 1 do 5.
         </p>
 
         <div class="notice">
@@ -409,10 +406,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </section>
 
       <!-- ====================================== KROK 4: DOPLŇUJÚCE -->
-      <section class="fstep" data-step data-step-name="Doplňujúce">
+      <section class="fstep" data-details-step data-step-name="Doplňujúce">
         <h2>Ešte pár vecí</h2>
         <p class="fstep__hint">
-          Tieto polia nie sú povinné okrem jedného — potrebujeme vedieť, odkiaľ ste sa o lige dozvedeli.
+          Povinné je iba označiť, odkiaľ ste sa o lige dozvedeli.
         </p>
 
         <fieldset>
@@ -470,17 +467,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- ====================================== KROK 5: ZHRNUTIE -->
       <section class="fstep" data-step data-step-name="Odoslanie">
-        <h2>Skontroluj a odošli</h2>
+        <h2>Hotovo, už len odoslať</h2>
         <p class="fstep__hint">
-          Toto je posledný krok. Po odoslaní ti príde e-mail s potvrdením a pokynmi k platbe.
+          Skontrolujte údaje a odošlite formulár.
         </p>
 
         <dl class="summary" data-summary></dl>
 
         <div class="notice">
-          <b>Čo bude nasledovať:</b> registráciu spracujeme, ozveme sa ti a pošleme platobné údaje.
-          Štartovné je 549 € pri úhrade do 31. 8. 2026, spolu s ním sa hradí depozit 50 €.
-          Prihláška je záväzná až po pripísaní platby.
+          Miesto v lige je potvrdené po dokončení prihlášky a uhradení štartovného.
         </div>
 
         <fieldset>
@@ -516,7 +511,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="fnav">
         <button type="button" class="btn btn--ghost" data-prev hidden>Späť</button>
         <button type="button" class="btn btn--primary" data-next>Pokračovať</button>
-        <button type="submit" class="btn btn--primary" data-send hidden>Odoslať registráciu</button>
+        <button type="submit" class="btn btn--primary" data-send hidden>Odoslať kontakt k tímu</button>
       </div>
 
     </form>
@@ -525,17 +520,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ================================================ po odoslaní -->
   <div class="done" data-done>
     <div class="done__mark">✓</div>
-    <h1>Tím je <span class="hl">prihlásený</span></h1>
+    <h1>Údaje boli <span class="hl">odoslané</span></h1>
     <p>
-      Registráciu máme. Na zadaný e-mail sme poslali potvrdenie a platobné údaje —
-      ak do pár minút nič nepríde, pozri sa do spamu.
+      Pokračujte v prihláške a doplňte termíny a ďalšie údaje o tíme.
     </p>
     <p>
-      Ozveme sa ti aj telefonicky, aby sme doladili hrací deň a čas.
-      Miesto v lige je isté až po uhradení štartovného.
+      Miesto v lige je potvrdené po dokončení prihlášky a úhrade štartovného.
     </p>
     <div class="hero__actions">
-      <a class="btn btn--primary" href="index.html">Späť na informácie o lige</a>
+      <a class="btn btn--primary" href="registracia-timu.html?dokoncenie=1">Dokončiť prihlášku teraz</a>
+      <a class="btn btn--ghost" href="index.html">Späť na informácie o lige</a>
     </div>
   </div>
 
@@ -589,6 +583,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <input type="text" name="cas_20">
   <input type="text" name="cas_21">
   <input type="text" name="ihrisko">
+  <input type="text" name="terminy">
   <input type="text" name="zdroj">
   <input type="text" name="fb">
   <input type="text" name="ig">

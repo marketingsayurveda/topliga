@@ -723,6 +723,43 @@ fieldset legend {
 
 .f { display: flex; flex-direction: column; gap: 7px; }
 
+/* Posledný týždeň registrácií: prvý kontakt má zostať naozaj krátky.
+   Podklady k rozpisu, súpiske a fakturácii sa doriešia po telefonáte. */
+.lead-capture fieldset:has(#sezona),
+.lead-capture .f:has(#nazov_kratky),
+.lead-capture .f:has(#skratka),
+.lead-capture .f:has(#kvalita),
+.lead-capture .f:has(#farba),
+.lead-capture .f:has(#logo),
+.lead-capture .f:has(#foto),
+.lead-capture .f:has(#m_priezvisko),
+.lead-capture .f:has(#m_ulica),
+.lead-capture .f:has(#m_mesto),
+.lead-capture .f:has(#m_psc),
+.lead-capture .f:has(#m_krajina),
+.lead-capture fieldset:has(#k_email) {
+  display: none;
+}
+
+/* Pri dokončení prihlášky zobrazíme pôvodný plný rozsah formulára. */
+body.is-completion .lead-capture fieldset:has(#sezona),
+body.is-completion .lead-capture fieldset:has(#k_email) {
+  display: block;
+}
+body.is-completion .lead-capture .f:has(#nazov_kratky),
+body.is-completion .lead-capture .f:has(#skratka),
+body.is-completion .lead-capture .f:has(#kvalita),
+body.is-completion .lead-capture .f:has(#farba),
+body.is-completion .lead-capture .f:has(#logo),
+body.is-completion .lead-capture .f:has(#foto),
+body.is-completion .lead-capture .f:has(#m_priezvisko),
+body.is-completion .lead-capture .f:has(#m_ulica),
+body.is-completion .lead-capture .f:has(#m_mesto),
+body.is-completion .lead-capture .f:has(#m_psc),
+body.is-completion .lead-capture .f:has(#m_krajina) {
+  display: flex;
+}
+
 .f > label,
 .f > .f__label {
   font-size: 0.78rem;
