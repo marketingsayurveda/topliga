@@ -483,8 +483,8 @@
      ====================================================================== */
 
   var FORM_NAMES = {
-    tim: 'registracia-tim',
-    'tim-dokoncenie': 'registracia-tim',
+    tim: 'registracia-tim-lead',              // Krok 1 (čiastočný lead) — notifikácia len Adamovi
+    'tim-dokoncenie': 'registracia-tim-complete', // Krok 2 (úplný lead) — Adam + Juraj
     jednotlivec: 'registracia-jednotlivec'
   };
 
