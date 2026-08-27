@@ -485,12 +485,24 @@
     if (el.type === 'file' && el.name) FILE_FIELDS[el.name] = true;
   });
 
+  // Krok 1 (čiastočný lead, FORM_ID 'tim') posiela iba polia prvého kroku.
+  // Polia z detailných krokov (data-details-step) sú vtedy prázdne a keby sme
+  // ich poslali, do formulára registracia-tim-lead by prišli desiatky prázdnych
+  // polí — a taký submission Netlify/Akismet skôr označí ako spam. Odvodzujeme
+  // ich z DOM, nech zoznam ostane v súlade s HTML aj po úprave formulára.
+  var DETAIL_FIELDS = {};
+  Array.prototype.forEach.call(form.querySelectorAll('[data-details-step] [name]'), function (el) {
+    if (el.name) DETAIL_FIELDS[el.name] = true;
+  });
+  var isLeadForm = FORM_ID === 'tim';
+
   function sendRegistration(payload) {
     var body = new URLSearchParams();
     body.append('form-name', FORM_NAMES[FORM_ID] || FORM_ID);
 
     Object.keys(payload).forEach(function (key) {
       if (FILE_FIELDS[key]) return;
+      if (isLeadForm && DETAIL_FIELDS[key]) return; // krok 1 neposiela polia detailných krokov
 
       var v = payload[key];
 
