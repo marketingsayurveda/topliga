@@ -26,9 +26,12 @@ Zoradené podľa dôležitosti. Bez prvých troch bodov kampaň nemá zmysel mer
 
 **Hotové — chodia do Netlify Forms.** Držia to pohromade dva kusy:
 
-- v `registracia-timu.html` a `registracia-jednotlivca.html` je pred `</body>`
-  skrytý statický formulár (`registracia-tim`, `registracia-jednotlivec`).
-  Netlify si polia načíta pri builde, nie za behu — bez neho POST skončí na 404;
+- v `registracia-timu.html` a `registracia-jednotlivca.html` sú pred `</body>`
+  skryté statické formuláre. Tímová prihláška má dva — `registracia-tim-lead`
+  (krok 1, čiastočný lead) a `registracia-tim-complete` (krok 2, úplná
+  prihláška) — aby sa notifikácie dali smerovať zvlášť; jednotlivec má
+  `registracia-jednotlivec`. Netlify si polia načíta pri builde, nie za behu —
+  bez nich POST skončí na 404;
 - `assets/js/forms.js`, funkcia **`sendRegistration()`**, posiela `POST /`
   ako `application/x-www-form-urlencoded` s `form-name` v tele.
 

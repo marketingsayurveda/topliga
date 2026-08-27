@@ -14,6 +14,25 @@
   var form = document.querySelector('[data-mform]');
   if (!form) return;
 
+  // Prvý krok zbiera iba kontakt. Kto chce pokračovať hneď, dostane sa cez
+  // ?dokoncenie=1 na tú istú prihlášku v plnom rozsahu – údaje sa prenášajú
+  // z predošlého kroku, takže ich nemusí písať znovu.
+  var isCompletion = new URLSearchParams(location.search).get('dokoncenie') === '1';
+  if (isCompletion) {
+    document.body.classList.add('is-completion');
+    form.setAttribute('data-mform', 'tim-dokoncenie');
+    form.setAttribute('data-prefill-from', 'tl_team_lead');
+
+    Array.prototype.forEach.call(form.querySelectorAll('[data-details-step]'), function (step) {
+      step.setAttribute('data-step', '');
+    });
+
+    var title = document.querySelector('[data-form-top] h1');
+    var intro = document.querySelector('[data-form-top] p');
+    if (title) title.innerHTML = 'Dokončenie prihlášky <span class="hl">tímu</span>';
+    if (intro) intro.textContent = 'Doplňte termíny a údaje potrebné na zaradenie tímu do súťaže.';
+  }
+
   var FORM_ID = form.getAttribute('data-mform');
   var DRAFT_KEY = 'tl_draft_' + FORM_ID;
 
@@ -345,6 +364,31 @@
     }
   }
 
+  // Krátky kontakt z úvodného formulára prenesieme do detailnej prihlášky.
+  // Funguje to pri okamžitom prechode v tom istom prehliadači; e-mailový link
+  // sa posiela samostatnou automatizáciou a musí pracovať s vlastným tokenom.
+  function loadLeadPrefill() {
+    var sourceKey = form.getAttribute('data-prefill-from');
+    if (!sourceKey) return;
+
+    var raw;
+    try { raw = sessionStorage.getItem(sourceKey); } catch (e) { return; }
+    if (!raw) return;
+
+    var data;
+    try { data = JSON.parse(raw); } catch (e) { return; }
+
+    Array.prototype.forEach.call(form.elements, function (el) {
+      if (!el.name || !(el.name in data) || el.type === 'file' || el.value) return;
+      var value = data[el.name];
+      if (Array.isArray(value)) {
+        if (el.type === 'checkbox') el.checked = value.indexOf(el.value) > -1;
+        return;
+      }
+      if (el.type !== 'checkbox' && el.type !== 'radio' && value) el.value = value;
+    });
+  }
+
   var clearBtn = document.querySelector('[data-draft-clear]');
   if (clearBtn) {
     clearBtn.addEventListener('click', function (e) {
@@ -385,8 +429,14 @@
       .then(function () {
         try { localStorage.removeItem(DRAFT_KEY); } catch (err) {}
 
-        window.tlTrack && window.tlTrack('registration_submit', { form: FORM_ID });
-        if (typeof window.fbq === 'function') window.fbq('track', 'CompleteRegistration');
+        if (FORM_ID === 'tim') {
+          try { sessionStorage.setItem('tl_team_lead', JSON.stringify(payload)); } catch (err) {}
+          window.tlTrack && window.tlTrack('team_lead_submit', { form: FORM_ID });
+          if (typeof window.fbq === 'function') window.fbq('track', 'Lead');
+        } else {
+          window.tlTrack && window.tlTrack('registration_submit', { form: FORM_ID });
+          if (typeof window.fbq === 'function') window.fbq('track', 'CompleteRegistration');
+        }
 
         var wrap = document.querySelector('[data-form-wrap]');
         if (wrap) wrap.style.display = 'none';
@@ -424,7 +474,8 @@
      ====================================================================== */
 
   var FORM_NAMES = {
-    tim: 'registracia-tim',
+    tim: 'registracia-tim-lead',              // Krok 1 (čiastočný lead) — notifikácia len Adamovi
+    'tim-dokoncenie': 'registracia-tim-complete', // Krok 2 (úplný lead) — Adam + Juraj
     jednotlivec: 'registracia-jednotlivec'
   };
 
@@ -434,12 +485,24 @@
     if (el.type === 'file' && el.name) FILE_FIELDS[el.name] = true;
   });
 
+  // Krok 1 (čiastočný lead, FORM_ID 'tim') posiela iba polia prvého kroku.
+  // Polia z detailných krokov (data-details-step) sú vtedy prázdne a keby sme
+  // ich poslali, do formulára registracia-tim-lead by prišli desiatky prázdnych
+  // polí — a taký submission Netlify/Akismet skôr označí ako spam. Odvodzujeme
+  // ich z DOM, nech zoznam ostane v súlade s HTML aj po úprave formulára.
+  var DETAIL_FIELDS = {};
+  Array.prototype.forEach.call(form.querySelectorAll('[data-details-step] [name]'), function (el) {
+    if (el.name) DETAIL_FIELDS[el.name] = true;
+  });
+  var isLeadForm = FORM_ID === 'tim';
+
   function sendRegistration(payload) {
     var body = new URLSearchParams();
     body.append('form-name', FORM_NAMES[FORM_ID] || FORM_ID);
 
     Object.keys(payload).forEach(function (key) {
       if (FILE_FIELDS[key]) return;
+      if (isLeadForm && DETAIL_FIELDS[key]) return; // krok 1 neposiela polia detailných krokov
 
       var v = payload[key];
 
@@ -469,6 +532,7 @@
   }
 
   /* ------------------------------------------------------------------ štart */
+  loadLeadPrefill();
   loadDraft();
   showStep(0, { silent: true });
 })();
