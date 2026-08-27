@@ -18,15 +18,6 @@
   // ?dokoncenie=1 na tú istú prihlášku v plnom rozsahu – údaje sa prenášajú
   // z predošlého kroku, takže ich nemusí písať znovu.
   var isCompletion = new URLSearchParams(location.search).get('dokoncenie') === '1';
-  var isCompanyTeam = new URLSearchParams(location.search).get('typ') === 'firemny';
-  if (isCompanyTeam) {
-    var teamType = form.querySelector('[name="typ_timu"]');
-    if (teamType) teamType.value = 'firemny';
-    var companyTitle = document.querySelector('[data-form-top] h1');
-    var companyIntro = document.querySelector('[data-form-top] p');
-    if (companyTitle) companyTitle.innerHTML = 'Registrácia <span class="hl">firemného tímu</span>';
-    if (companyIntro) companyIntro.textContent = 'Vyplňte názov firmy alebo tímu a kontakt na manažéra tímu.';
-  }
   if (isCompletion) {
     document.body.classList.add('is-completion');
     form.setAttribute('data-mform', 'tim-dokoncenie');
@@ -38,7 +29,7 @@
 
     var title = document.querySelector('[data-form-top] h1');
     var intro = document.querySelector('[data-form-top] p');
-    if (title) title.innerHTML = 'Dokončenie prihlášky <span class="hl">' + (isCompanyTeam ? 'firemného tímu' : 'tímu') + '</span>';
+    if (title) title.innerHTML = 'Dokončenie prihlášky <span class="hl">tímu</span>';
     if (intro) intro.textContent = 'Doplňte termíny a údaje potrebné na zaradenie tímu do súťaže.';
   }
 
